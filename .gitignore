@@ -1,0 +1,23 @@
+# .gitignore — Mesin Video Otomatis (Kiroween 2026)
+#
+# PERINGATAN: .kiro/ TIDAK BOLEH ada di file ini.
+# Folder .kiro/ (spec + steering + hooks) adalah bukti
+# pembangunan memakai Kiro dan WAJIB ter-commit ke GitHub.
+# scripts/check-static.py memverifikasi hal ini.
+
+# Sistem operasi / editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Log dan berkas sementara lokal
+*.log
+.tmp/
+
+# Berkas video hasil rekaman lokal (jangan ikut ke repo)
+*.webm
+*.mp4
+
+# Node (tidak dipakai saat ini; berjaga-jaga bila suatu saat ada tooling)
+node_modules/

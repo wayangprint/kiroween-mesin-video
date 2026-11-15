@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesin Video Otomatis — Topik jadi Video</title>
+  <meta name="description" content="Masukkan topik, pilih gaya dan durasi, dapatkan storyboard, narasi suara, preview video, dan paket produksi — semuanya di browser, tanpa backend.">
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Mesin Video Otomatis</h1>
+    <p>Topik jadi storyboard, narasi, dan preview video — di browser, tanpa backend.</p>
+  </header>
+
+  <main>
+    <!-- Wilayah 1: form pembuat storyboard (lihat tasks.md tugas 1 & 5) -->
+    <section aria-labelledby="judul-form">
+      <h2 id="judul-form">1. Buat storyboard</h2>
+      <form id="form-topik">
+        <label for="input-topik">Topik video (maksimal 120 karakter)</label>
+        <input id="input-topik" name="topik" type="text" maxlength="120"
+               placeholder="Contoh: Cara Menyeduh Teh" required>
+        <button id="btn-contoh" type="button">Coba contoh: Cara Menyeduh Teh</button>
+
+        <fieldset>
+          <legend>Gaya</legend>
+          <label><input type="radio" name="gaya" value="edukasi" checked> Edukasi</label>
+          <label><input type="radio" name="gaya" value="cerita"> Cerita</label>
+          <label><input type="radio" name="gaya" value="promo"> Promo</label>
+        </fieldset>
+
+        <label for="pilih-durasi">Durasi</label>
+        <select id="pilih-durasi" name="durasi">
+          <option value="30">30 detik</option>
+          <option value="60" selected>60 detik</option>
+          <option value="90">90 detik</option>
+        </select>
+
+        <button id="btn-buat" type="submit">Buat Storyboard</button>
+      </form>
+    </section>
+
+    <!-- Wilayah 2: editor scene (lihat tasks.md tugas 5) -->
+    <section aria-labelledby="judul-scene">
+      <h2 id="judul-scene">2. Edit scene</h2>
+      <!-- TODO (tugas 5): daftar scene dirender dari state oleh src/app.js -->
+      <ol id="daftar-scene"></ol>
+      <p id="total-durasi">Total durasi: —</p>
+      <button id="btn-tambah-scene" type="button">Tambah scene</button>
+    </section>
+
+    <!-- Wilayah 3: preview + rekam (lihat tasks.md tugas 7 & 9) -->
+    <section aria-labelledby="judul-preview">
+      <h2 id="judul-preview">3. Preview &amp; rekam</h2>
+      <!-- TODO (tugas 7): renderer.js menggambar scene aktif ke canvas ini -->
+      <canvas id="canvas-preview" width="1280" height="720"></canvas>
+      <p id="indikator-scene">Belum ada preview.</p>
+      <p id="progres-preview"></p>
+      <div>
+        <button id="btn-putar" type="button">Putar Preview</button>
+        <button id="btn-jeda" type="button">Jeda</button>
+        <button id="btn-berhenti" type="button">Berhenti</button>
+        <button id="btn-rekam" type="button">Rekam &amp; Unduh Video</button>
+      </div>
+      <p><small>Catatan: video hasil rekaman berisi gambar scene; suara
+      narasi (TTS) tidak terekam karena keterbatasan
+      <code>canvas.captureStream()</code>. Lihat README.</small></p>
+    </section>
+
+    <!-- Wilayah 4: ekspor paket produksi (lihat tasks.md tugas 8) -->
+    <section aria-labelledby="judul-ekspor">
+      <h2 id="judul-ekspor">4. Unduh paket produksi</h2>
+      <div>
+        <button id="btn-unduh-naskah" type="button">Unduh Naskah (.md)</button>
+        <button id="btn-unduh-subtitle" type="button">Unduh Subtitle (.srt)</button>
+        <button id="btn-unduh-proyek" type="button">Unduh Proyek (.json)</button>
+        <button id="btn-buka-proyek" type="button">Buka Proyek (.json)</button>
+        <input id="input-file-proyek" type="file" accept=".json,application/json" hidden>
+      </div>
+    </section>
+
+    <!-- Area status: semua pesan Bahasa Indonesia tampil di sini -->
+    <p id="status" role="status"></p>
+  </main>
+
+  <footer>
+    <p>Mesin Video Otomatis — proyek Kiroween 2026, kategori Frankenstein.
+    Naskah dibuat dari template + topik yang Anda ketik. Periksa fakta sebelum dipublikasikan.</p>
+  </footer>
+
+  <noscript>
+    <p>Aplikasi ini membutuhkan JavaScript. Aktifkan JavaScript lalu muat ulang halaman.</p>
+  </noscript>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
